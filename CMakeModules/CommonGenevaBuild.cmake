@@ -229,10 +229,12 @@ SET(Boost_NO_BOOST_CMAKE ON)
 
 # Search for the required libraries
 MESSAGE("Searching for Boost...\n")
+
 FIND_PACKAGE(
 	Boost
 	${GENEVA_MIN_BOOST_VERSION} REQUIRED
 	COMPONENTS ${GENEVA_BOOST_LIBS}
+	CONFIG
 )
 MESSAGE("")
 

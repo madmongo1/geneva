@@ -38,7 +38,22 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.1)
 
 MESSAGE ("")
 
+include(cmake/HunterGate.cmake)
+HunterGate(
+		URL "https://github.com/cpp-pm/hunter/archive/v0.23.252.tar.gz"
+		SHA1 "4217d4b597d9ba3e909415b20d81f46f2610f538"
+)
+
 PROJECT (Geneva_Library_Collection)
+
+hunter_add_package(Boost
+		COMPONENTS
+		atomic chrono date_time filesystem
+		regex serialization system program_options
+		test)
+
+hunter_add_package(OpenCL)
+
 
 ################################################################################
 # We create some examples and test programs as part of the build process.
@@ -75,7 +90,7 @@ ENDIF()
 ################################################################################
 # Make sure we first check our local modules directory
 
-SET(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/CMakeModules")
+LIST(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/CMakeModules")
 
 ###############################################################################
 # Include the shared functionality module for any Geneva build
